@@ -15,8 +15,9 @@ async function startProxy(portNumber) {
   return server;
 }
 
-async function run(portNumber) {
-  const proxy = await startProxy(portNumber);
-  console.log('proxy started', `http://localhost:${proxy.server.address().port}/`);
-}
-module.exports = run;
+module.exports = async function run(portNumber) {
+  const instance = await startProxy(portNumber);
+  // console.log(instance);
+  console.log('proxy started', `http://localhost:${instance.server.address().port}/`);
+  return instance;
+};
